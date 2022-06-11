@@ -8,9 +8,8 @@ Sendo assim, a ONG poderá ampliar a divulgação e a velocidade do processo de 
 
 
 ## 🌌 Tecnologias utilizadas
-<img align="center" alt="Java" height="30" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-plain.svg">
-Java
- <img align="center" alt="Javspring" height="30" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/spring/spring-plain.svg">
+<img align="center" alt="Java" height="30" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-plain.svg">Java
+<img align="center" alt="Spring" height="30" width="30" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg">
 Spring
  <img align="center" alt="Mysql" height="30" width="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-plain.svg">
 MySQL
