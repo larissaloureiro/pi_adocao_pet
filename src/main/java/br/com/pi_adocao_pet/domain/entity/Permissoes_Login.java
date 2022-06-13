@@ -15,26 +15,26 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-	@Data
-	@NoArgsConstructor
-	@AllArgsConstructor
-	@Entity
-	@Table(name = "tb_permissoes_login")
-	public class Permissoes_Login implements Serializable {
-		
-		private static final long serialVersionUID = 1L;
-		
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		@Column(name="id_permissoes_login")
-		private Long id;
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "tb_permissoes_login")
+public class Permissoes_Login implements Serializable {
 
-		@OneToOne
-		@JoinColumn(name="id_login")
-		private Login idLogin;
-		
-		@OneToOne
-		@JoinColumn(name="id_permissao")
-		private Permissao idPermissao;
-	
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_permissoes_login")
+	private Long id;
+
+	@OneToOne
+	@JoinColumn(name = "id_login")
+	private Login idLogin;
+
+	@OneToOne
+	@JoinColumn(name = "id_permissao")
+	private Permissao idPermissao;
+
 }

@@ -15,28 +15,27 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-	@Data
-	@NoArgsConstructor
-	@AllArgsConstructor
-	@Entity
-	@Table(name = "tb_Vacina")
-	public class Vacina implements Serializable{
-		private static final long serialVersionUID = 1L;
-		
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		@Column(name="id_vacina")
-		private Long id;
-		
-		@NotBlank
-		@Size(max=45)
-		@Column(name="tipo_vacina")
-		private String tipo;
-		
-		@NotBlank
-		@Size(max=45)
-		@Column(name="fabricante_vacina")
-		private String fabricanteVacina;
-		
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "tb_Vacina")
+public class Vacina implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_vacina")
+	private Long id;
+
+	@NotBlank
+	@Size(max = 45)
+	@Column(name = "tipo_vacina")
+	private String tipo;
+
+	@NotBlank
+	@Size(max = 45)
+	@Column(name = "fabricante_vacina")
+	private String fabricanteVacina;
 
 }

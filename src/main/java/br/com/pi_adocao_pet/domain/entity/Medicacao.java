@@ -24,33 +24,29 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "tb_Medicacao")
 public class Medicacao implements Serializable {
-	
 
 	private static final long serialVersionUID = 1L;
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_medicacao")
+	@Column(name = "id_medicacao")
 	private Long id;
-	
+
 	@OneToOne // confirmar esta cardinalidade
-	@JoinColumn(name="id_animal")
-	private Animal idAnimal ;
-	
+	@JoinColumn(name = "id_animal")
+	private Animal idAnimal;
+
 	@OneToOne // confirmar esta cardinalidade
-	@JoinColumn(name="id_medicamento")
+	@JoinColumn(name = "id_medicamento")
 	private Medicamento idMedicamento;
-	
+
 	@NotBlank
-	@Column(name="data_medicacao")
+	@Column(name = "data_medicacao")
 	private Date dataMedicacao;
-	
+
 	@NotBlank
-	@Size(max=10)
-	@Column(name="dosagem")
+	@Size(max = 10)
+	@Column(name = "dosagem")
 	private String dosagem;
-	
-	
 
 }

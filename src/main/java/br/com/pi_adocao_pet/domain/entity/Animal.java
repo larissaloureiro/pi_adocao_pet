@@ -17,68 +17,64 @@ import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-	
-	@Data
-	@NoArgsConstructor
-	@AllArgsConstructor
-	@Entity
-	@Table(name = "tb_Animal")
-	public class Animal implements Serializable {
-		
 
-		private static final long serialVersionUID = 1L;
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "tb_Animal")
+public class Animal implements Serializable {
 
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		@Column(name="id_animal")
-		private Long id;
-		
-		@OneToOne  // confirmar esta cardinalidade
-		@JoinColumn(name="id_especie")
-		private Especie idEspecie ;
-		
-		@NotBlank
-		@Size(max=45)
-		@Column(name="nome_animal")
-		private String nome;
-		
-		@NotBlank
-		@Size(max=10)
-		@Column(name="porte_animal")
-		private String porte;
-		
-		
-		@NotBlank
-		@Size(max=3)
-		@Column(name="idade_animal")
-		private int idade;
-		
-		@NotBlank
-		@Size(max=9)
-		@Column(name="sexo_animal")
-		private String sexo;
-		
-		
-		/* @NotBlank
-		@Size(max=45)
-		@Column(name="foto_animal")
-		private String foto; */  //verificar como adicionar foto 
+	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_animal")
+	private Long id;
 
-		@NotBlank
-		@Column(name="data_cadastro")
-		private Date dataCadastro; 
-		
+	@OneToOne // confirmar esta cardinalidade
+	@JoinColumn(name = "id_especie")
+	private Especie idEspecie;
 
-		@NotBlank
-		@Column(name="disponibilidade_animal")
-		private Boolean disponibilidade; 
-		
-		@NotBlank
-		@Size(max=45)
-		@Column(name="informacoes_animal")
-		private String informacoes;
-		
-		
+	@NotBlank
+	@Size(max = 45)
+	@Column(name = "nome_animal")
+	private String nome;
+
+	@NotBlank
+	@Size(max = 10)
+	@Column(name = "porte_animal")
+	private String porte;
+
+	@NotBlank
+	@Size(max = 3)
+	@Column(name = "idade_animal")
+	private int idade;
+
+	@NotBlank
+	@Size(max = 9)
+	@Column(name = "sexo_animal")
+	private String sexo;
+
+	/*
+	 * @NotBlank
+	 * 
+	 * @Size(max=45)
+	 * 
+	 * @Column(name="foto_animal") private String foto;
+	 */ // verificar como adicionar foto
+
+	@NotBlank
+	@Column(name = "data_cadastro")
+	private Date dataCadastro;
+
+	@NotBlank
+	@Column(name = "disponibilidade_animal")
+	private Boolean disponibilidade;
+
+	@NotBlank
+	@Size(max = 45)
+	@Column(name = "informacoes_animal")
+	private String informacoes;
 
 }

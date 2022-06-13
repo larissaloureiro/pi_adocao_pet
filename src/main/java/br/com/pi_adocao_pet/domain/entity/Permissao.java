@@ -15,27 +15,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-	@Data
-	@NoArgsConstructor
-	@AllArgsConstructor
-	@Entity
-	@Table(name = "tb_Permissao")
-	public class Permissao implements Serializable {
-		
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "tb_Permissao")
+public class Permissao implements Serializable {
 
-		private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_permissao")
+	private Long id;
 
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		@Column(name="id_permissao")
-		private Long id;
-		
-	
-		@NotBlank
-		@Size(max=20)
-		@Column(name="descricao_permissao")
-		private String descricao;
-		
+	@NotBlank
+	@Size(max = 20)
+	@Column(name = "descricao_permissao")
+	private String descricao;
 
 }

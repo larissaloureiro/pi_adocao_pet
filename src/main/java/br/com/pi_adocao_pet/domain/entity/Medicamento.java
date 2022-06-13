@@ -21,23 +21,22 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "tb_Medicamento")
 public class Medicamento implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id_medicamento")
+	@Column(name = "id_medicamento")
 	private Long id;
 
 	@NotBlank
-	@Size(max=45)
-	@Column(name="tipo_medicamento")
+	@Size(max = 45)
+	@Column(name = "tipo_medicamento")
 	private String tipo;
-	
+
 	@NotBlank
-	@Size(max=45)
-	@Column(name="fabricante_medicamento")
+	@Size(max = 45)
+	@Column(name = "fabricante_medicamento")
 	private String fabricanteMedicamento;
-	
 
 }
