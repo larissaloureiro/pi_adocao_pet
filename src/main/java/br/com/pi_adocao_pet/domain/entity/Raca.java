@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -27,6 +29,10 @@ public class Raca implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_raca")
 	private Long id;
+	
+	@ManyToOne // confirmar esta cardinalidade
+	@JoinColumn(name = "id_especie")
+	private Especie idEspecie;
 
 	@NotBlank
 	@Size(max = 45)

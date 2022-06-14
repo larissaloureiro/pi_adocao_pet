@@ -31,10 +31,6 @@ public class Especie implements Serializable {
 	@Column(name = "id_especie")
 	private Long id;
 
-	@ManyToOne // confirmar esta cardinalidade
-	@JoinColumn(name = "id_raca")
-	private Raca idRaca;
-
 	@NotBlank
 	@Size(max = 45)
 	@Column(name = "nome_especie")
