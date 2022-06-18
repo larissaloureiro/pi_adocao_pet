@@ -10,5 +10,5 @@ import br.com.pi_adocao_pet.domain.entity.Raca;
 @Repository
 public interface RacaRepository extends JpaRepository<Raca, Long> {
 	Page<Raca> findByIdEspecie(Long idEspecie, Pageable pageable);
-	
+	Raca findByIdRaca (String idRaca);
 }
