@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name = "tb_permissoes_login")
-public class Permissoes_Login implements Serializable {
+public class PermissoesLogin implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
