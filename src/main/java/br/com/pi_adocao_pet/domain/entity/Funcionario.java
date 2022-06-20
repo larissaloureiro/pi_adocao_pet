@@ -52,6 +52,6 @@ public class Funcionario extends Usuario implements Serializable {
 
 	@NotBlank
 	@Column(name = "data_admissao")
-	private Date dataCadastro;
+	private Date dataAdmissao;
 
 }
