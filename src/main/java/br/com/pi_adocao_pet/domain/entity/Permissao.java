@@ -11,16 +11,14 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import lombok.AllArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "tb_Permissao")
-public class Permissao implements Serializable {
+public class Permissao implements GrantedAuthority, Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -33,5 +31,10 @@ public class Permissao implements Serializable {
 	@Size(max = 20)
 	@Column(name = "descricao_permissao")
 	private String descricao;
+
+	@Override
+	public String getAuthority() {
+		return this.descricao;
+	}
 
 }
