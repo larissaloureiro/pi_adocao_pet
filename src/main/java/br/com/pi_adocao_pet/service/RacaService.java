@@ -1,8 +1,7 @@
 package br.com.pi_adocao_pet.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -23,13 +22,14 @@ public class RacaService {
 		return repository.save(raca);
 	}
 
-	public List<Raca> buscarTodos(Pageable pageable) {
+	public Page<Raca> buscarTodos(Pageable pageable) {
 		var page = repository.findAll(pageable);
-		return page.toList();
+		return page;
 	}
 
-	public Raca buscaPorId(Long Id) {
-		Raca entity = repository.findByIdRaca(idRaca);
+	public Raca buscaPorId(Long id) {
+		Raca entity = repository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com esse Id"));
 		return entity;
 	}
 
@@ -49,9 +49,10 @@ public class RacaService {
 		repository.delete(entity);
 
 	}
-	
-	public List<Raca> buscaPorIdEspecie(Especie especie){
-		return repository.findByIdEspecie(especie.getId());
+
+	public Page<Raca> buscaPorIdEspecie(Especie especie, Pageable pageable) {
+		var page = repository.findByIdEspecie(especie, pageable);
+		return page;
 	}
 
 }
