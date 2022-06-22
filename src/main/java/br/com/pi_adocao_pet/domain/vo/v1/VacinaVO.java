@@ -10,8 +10,6 @@ import com.github.dozermapper.core.Mapping;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
 public class VacinaVO extends RepresentationModel<VacinaVO> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -20,6 +18,45 @@ public class VacinaVO extends RepresentationModel<VacinaVO> implements Serializa
 	private Long key;
 	private String tipo;
 	private String fabricante;
+
+		
+	public VacinaVO(Long key, String tipo, String fabricante) {
+		super();
+		this.key = key;
+		this.tipo = tipo;
+		this.fabricante = fabricante;
+	}
+
+	
+	public Long getKey() {
+		return key;
+	}
+
+
+	public void setKey(Long key) {
+		this.key = key;
+	}
+
+
+	public String getTipo() {
+		return tipo;
+	}
+
+
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+
+
+	public String getFabricante() {
+		return fabricante;
+	}
+
+
+	public void setFabricante(String fabricante) {
+		this.fabricante = fabricante;
+	}
+
 
 	@Override
 	public int hashCode() {
