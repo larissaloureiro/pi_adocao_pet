@@ -20,8 +20,10 @@ public class TutorService {
 	
 	public TutorVO inserir(TutorVO tutor) {
 		var entity = DozerConverter.parseObject(tutor, Tutor.class);
-		var vo = DozerConverter.parseObject(repository.save(entity), TutorVO.class);
-		return vo;
+		if (entity.validaCpf() && entity.possuiIdadeMinima()) {
+			var vo = DozerConverter.parseObject(repository.save(entity), TutorVO.class);
+			return vo;
+		}
 	}
 	
 	public Page<TutorVO> buscarTodos(Pageable pageable) {
@@ -44,8 +46,8 @@ public class TutorService {
 	public TutorVO atualizar(TutorVO tutor) {
 		var entity = repository.findById(tutor.getKey())
 				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com esse ID."));
-
-		entity.setIdEndereco(DozerConverter.parseObject(tutor.getIdEndereco(), Endereco.class)); // Conferir
+		
+		entity.setEndereco(DozerConverter.parseObject(tutor.getEndereco(), Endereco.class));
 		entity.setNome(tutor.getNome());
 		entity.setTelefone(tutor.getTelefone());
 		entity.setEmail(tutor.getEmail());
@@ -54,9 +56,11 @@ public class TutorService {
 		
 		entity.setDataNascimento(tutor.getDataNascimento());
 		entity.setDataCadastro(tutor.getDataCadastro());
-
-		var vo = DozerConverter.parseObject(repository.save(entity), TutorVO.class);
-		return vo;
+		if (entity.validaCpf() && entity.possuiIdadeMinima()) {
+			var vo = DozerConverter.parseObject(repository.save(entity), TutorVO.class);
+			return vo;
+		}
+		
 	}
 	
 	

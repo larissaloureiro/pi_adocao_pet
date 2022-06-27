@@ -13,7 +13,7 @@ public class TutorVO extends RepresentationModel<EnderecoVO> implements Serializ
 
 	@Mapping("id")
 	private Long key;
-	private EnderecoVO idEndereco;
+	private EnderecoVO endereco;
 	private String nome;
 	private String telefone;
 	private String email;
@@ -23,10 +23,10 @@ public class TutorVO extends RepresentationModel<EnderecoVO> implements Serializ
 	private Date dataNascimento;
 	private Date dataCadastro;
 
-	public TutorVO(Long key, EnderecoVO idEndereco, String nome, String telefone, String email, String rg, String cpf,
+	public TutorVO(Long key, EnderecoVO endereco, String nome, String telefone, String email, String rg, String cpf,
 			Date dataNascimento, Date dataCadastro) {
 		this.key = key;
-		this.idEndereco = idEndereco;
+		this.endereco = endereco;
 		this.nome = nome;
 		this.telefone = telefone;
 		this.email = email;
@@ -44,12 +44,12 @@ public class TutorVO extends RepresentationModel<EnderecoVO> implements Serializ
 		this.key = key;
 	}
 
-	public EnderecoVO getIdEndereco() {
-		return idEndereco;
+	public EnderecoVO getEndereco() {
+		return endereco;
 	}
 
-	public void setIdEndereco(EnderecoVO idEndereco) {
-		this.idEndereco = idEndereco;
+	public void setEndereco(EnderecoVO endereco) {
+		this.endereco = endereco;
 	}
 
 	public String getNome() {
@@ -113,7 +113,7 @@ public class TutorVO extends RepresentationModel<EnderecoVO> implements Serializ
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result
-				+ Objects.hash(cpf, dataCadastro, dataNascimento, email, idEndereco, key, nome, rg, telefone);
+				+ Objects.hash(cpf, dataCadastro, dataNascimento, email, endereco, key, nome, rg, telefone);
 		return result;
 	}
 
@@ -128,7 +128,7 @@ public class TutorVO extends RepresentationModel<EnderecoVO> implements Serializ
 		TutorVO other = (TutorVO) obj;
 		return Objects.equals(cpf, other.cpf) && Objects.equals(dataCadastro, other.dataCadastro)
 				&& Objects.equals(dataNascimento, other.dataNascimento) && Objects.equals(email, other.email)
-				&& Objects.equals(idEndereco, other.idEndereco) && Objects.equals(key, other.key)
+				&& Objects.equals(endereco, other.endereco) && Objects.equals(key, other.key)
 				&& Objects.equals(nome, other.nome) && Objects.equals(rg, other.rg)
 				&& Objects.equals(telefone, other.telefone);
 	}
