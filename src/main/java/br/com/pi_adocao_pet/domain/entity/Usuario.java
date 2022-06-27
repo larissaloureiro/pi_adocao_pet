@@ -35,7 +35,7 @@ public abstract class Usuario implements Serializable {
 
 	@OneToOne
 	@JoinColumn(name = "id_endereco")
-	private Endereco idEndereco;
+	private Endereco endereco;
 
 	@NotBlank
 	@Size(max = 45)
@@ -62,5 +62,41 @@ public abstract class Usuario implements Serializable {
 	@Size(max = 11)
 	@Column(name = "cpf_usuario")
 	private String cpf;
+
+	public Boolean validaCpf() {
+		if (this.cpf.length() != 11) {
+			return false;
+		}
+
+		String numeros = this.cpf.substring(0, 9);
+		String digitos = this.cpf.substring(9);
+
+		// Calculando primeiro dígito verificador
+		int soma = 0;
+		for (int i = 10; i > 1; i--) {
+			int numeroAtual = numeros.charAt(10 - i) - '0'; // Transforma char em inteiro
+			soma += numeroAtual * i;
+		}
+
+		int resultado = (soma % 11) < 2 ? 0 : 11 - (soma % 11);
+		if (resultado != (digitos.charAt(0) - '0')) {
+			return false;
+		}
+
+		// Calculando segundo dígito verificador
+		soma = 0;
+		numeros = cpf.substring(0, 10);
+		for (int k = 11; k > 1; k--) {
+			int numeroAtual = numeros.charAt(11 - k) - '0'; // Transforma char em inteiro
+			soma += numeroAtual * k;
+		}
+
+		resultado = (soma % 11) < 2 ? 0 : 11 - (soma % 11);
+		if (resultado != (digitos.charAt(1) - '0')) {
+			return false;
+		}
+
+		return true;
+	}
 
 }
