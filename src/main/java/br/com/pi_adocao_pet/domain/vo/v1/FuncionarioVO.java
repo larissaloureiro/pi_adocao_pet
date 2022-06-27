@@ -13,7 +13,7 @@ public class FuncionarioVO extends RepresentationModel<EnderecoVO> implements Se
 
 	@Mapping("id")
 	private Long key;
-	private EnderecoVO idEndereco;
+	private EnderecoVO endereco;
 	private String nome;
 	private String telefone;
 	private String email;
@@ -24,10 +24,10 @@ public class FuncionarioVO extends RepresentationModel<EnderecoVO> implements Se
 	private String carteiraTrabalho;
 	private Date dataAdmissao;
 
-	public FuncionarioVO(Long key, EnderecoVO idEndereco, String nome, String telefone, String email, String rg,
+	public FuncionarioVO(Long key, EnderecoVO endereco, String nome, String telefone, String email, String rg,
 			String cpf, String cargo, String carteiraTrabalho, Date dataAdmissao) {
 		this.key = key;
-		this.idEndereco = idEndereco;
+		this.endereco = endereco;
 		this.nome = nome;
 		this.telefone = telefone;
 		this.email = email;
@@ -46,12 +46,12 @@ public class FuncionarioVO extends RepresentationModel<EnderecoVO> implements Se
 		this.key = key;
 	}
 
-	public EnderecoVO getIdEndereco() {
-		return idEndereco;
+	public EnderecoVO getEndereco() {
+		return endereco;
 	}
 
-	public void setIdEndereco(EnderecoVO idEndereco) {
-		this.idEndereco = idEndereco;
+	public void setEndereco(EnderecoVO endereco) {
+		this.endereco = endereco;
 	}
 
 	public String getNome() {
@@ -123,7 +123,7 @@ public class FuncionarioVO extends RepresentationModel<EnderecoVO> implements Se
 		final int prime = 31;
 		int result = super.hashCode();
 		result = prime * result
-				+ Objects.hash(cargo, carteiraTrabalho, cpf, dataAdmissao, email, idEndereco, key, nome, rg, telefone);
+				+ Objects.hash(cargo, carteiraTrabalho, cpf, dataAdmissao, email, endereco, key, nome, rg, telefone);
 		return result;
 	}
 
@@ -138,7 +138,7 @@ public class FuncionarioVO extends RepresentationModel<EnderecoVO> implements Se
 		FuncionarioVO other = (FuncionarioVO) obj;
 		return Objects.equals(cargo, other.cargo) && Objects.equals(carteiraTrabalho, other.carteiraTrabalho)
 				&& Objects.equals(cpf, other.cpf) && Objects.equals(dataAdmissao, other.dataAdmissao)
-				&& Objects.equals(email, other.email) && Objects.equals(idEndereco, other.idEndereco)
+				&& Objects.equals(email, other.email) && Objects.equals(endereco, other.endereco)
 				&& Objects.equals(key, other.key) && Objects.equals(nome, other.nome) && Objects.equals(rg, other.rg)
 				&& Objects.equals(telefone, other.telefone);
 	}

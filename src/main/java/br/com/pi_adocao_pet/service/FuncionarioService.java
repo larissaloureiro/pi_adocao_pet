@@ -19,8 +19,10 @@ public class FuncionarioService {
 
 	public FuncionarioVO inserir(FuncionarioVO funcionario) {
 		var entity = DozerConverter.parseObject(funcionario, Funcionario.class);
-		var vo = DozerConverter.parseObject(repository.save(entity), FuncionarioVO.class);
-		return vo;
+		if (entity.validaCpf()){
+			var vo = DozerConverter.parseObject(repository.save(entity), FuncionarioVO.class);
+			return vo;
+		}
 	}
 
 	public Page<FuncionarioVO> buscarTodos(Pageable pageable) {
@@ -44,7 +46,7 @@ public class FuncionarioService {
 		var entity = repository.findById(funcionario.getKey())
 				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com esse ID."));
 
-		entity.setIdEndereco(DozerConverter.parseObject(funcionario.getIdEndereco(), Endereco.class)); // Conferir
+		entity.setEndereco(DozerConverter.parseObject(funcionario.getEndereco(), Endereco.class));
 		entity.setNome(funcionario.getNome());
 		entity.setTelefone(funcionario.getTelefone());
 		entity.setEmail(funcionario.getEmail());
@@ -54,9 +56,11 @@ public class FuncionarioService {
 		entity.setCargo(funcionario.getCargo());
 		entity.setCarteiraTrabalho(funcionario.getCarteiraTrabalho());
 		entity.setDataAdmissao(funcionario.getDataAdmissao());
-
-		var vo = DozerConverter.parseObject(repository.save(entity), FuncionarioVO.class);
-		return vo;
+		
+		if (entity.validaCpf()){
+			var vo = DozerConverter.parseObject(repository.save(entity), FuncionarioVO.class);
+			return vo;
+		}
 	}
 
 	private FuncionarioVO convertToFuncionarioVO(Funcionario entity) {
