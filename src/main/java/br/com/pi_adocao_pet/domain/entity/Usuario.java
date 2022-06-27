@@ -85,7 +85,7 @@ public abstract class Usuario implements Serializable {
 
 		// Calculando segundo dígito verificador
 		soma = 0;
-		numeros = cpf.substring(0, 10);
+		numeros = this.cpf.substring(0, 10);
 		for (int k = 11; k > 1; k--) {
 			int numeroAtual = numeros.charAt(11 - k) - '0'; // Transforma char em inteiro
 			soma += numeroAtual * k;
