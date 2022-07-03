@@ -47,7 +47,7 @@ public class VacinaController {
 		Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection, "nome"));
 		Page<VacinaVO> vacinasVO = service.buscarTodos(pageable);
 		vacinasVO.stream()
-				.forEach(p -> p.add(linkTo(methodOn(VacinaController.class).findById(p.getKey())).withSelfRel()));
+				.forEach(v -> v.add(linkTo(methodOn(VacinaController.class).findById(v.getKey())).withSelfRel()));
 		return ResponseEntity.ok(CollectionModel.of(vacinasVO));
 	}
 

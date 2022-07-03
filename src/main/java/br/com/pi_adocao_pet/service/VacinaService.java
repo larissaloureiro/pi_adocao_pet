@@ -55,7 +55,5 @@ public class VacinaService {
 				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com esse Id"));
 		repository.delete(entity);
 	}
-	private VacinaVO convertToPessoaVO(Vacina entity) {
-        return DozerConverter.parseObject(entity, VacinaVO.class);
-}
+
 }
