@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Entity 
 @Table(name = "tb_Animal")
 public class Animal implements Serializable {
 
@@ -33,8 +33,8 @@ public class Animal implements Serializable {
 	private Long id;
 
 	@OneToOne // confirmar esta cardinalidade
-	@JoinColumn(name = "id_especie")
-	private Especie idEspecie;
+	@JoinColumn(name = "id_raca")
+	private Raca idRaca;
 
 	@NotBlank
 	@Size(max = 45)
