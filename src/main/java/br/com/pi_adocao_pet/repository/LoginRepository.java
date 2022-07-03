@@ -10,6 +10,6 @@ import br.com.pi_adocao_pet.domain.entity.Login;
 @Repository
 public interface LoginRepository extends JpaRepository <Login, Long>{
 	
-	@Query("SELECT u FROM User u WHERE u.username =: username")
+	@Query("SELECT u FROM Login u WHERE u.username =: username")
 	Login findByUsername(@Param("username") String username);
 }
