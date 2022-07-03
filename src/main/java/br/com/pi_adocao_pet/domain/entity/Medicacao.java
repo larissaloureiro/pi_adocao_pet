@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -32,13 +32,17 @@ public class Medicacao implements Serializable {
 	@Column(name = "id_medicacao")
 	private Long id;
 
-	@OneToOne // confirmar esta cardinalidade
+	@ManyToOne
 	@JoinColumn(name = "id_animal")
 	private Animal idAnimal;
 
-	@OneToOne // confirmar esta cardinalidade
+	@ManyToOne
 	@JoinColumn(name = "id_medicamento")
 	private Medicamento idMedicamento;
+
+	@ManyToOne
+	@JoinColumn(name = "id_funcionario")
+	private Funcionario idFuncionario;
 
 	@NotBlank
 	@Column(name = "data_medicacao")
