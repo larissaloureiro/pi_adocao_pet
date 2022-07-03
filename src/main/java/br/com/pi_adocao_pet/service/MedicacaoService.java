@@ -37,6 +37,11 @@ public class MedicacaoService {
 		return page.map(this::convertToMedicacaoVO);
 	}
 
+	public Page<MedicacaoVO> buscarTodosPorIdAnimal(long idAnimal, Pageable pageable){
+		var page = repository.findAllByIdAnimal(idAnimal, pageable);
+		return page.map(this::convertToMedicacaoVO);
+	}
+
 	public MedicacaoVO buscarPorId(Long id) {
 		var entity = repository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com esse Id."));

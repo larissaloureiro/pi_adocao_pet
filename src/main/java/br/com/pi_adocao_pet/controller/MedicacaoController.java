@@ -42,8 +42,23 @@ public class MedicacaoController {
 			@RequestParam(value = "limit", defaultValue = "10") int limit,
 			@RequestParam(value = "direction", defaultValue = "asc") String direction) {
 		var sortDirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
-		Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection, "tipo"));
+		Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection, "dataMedicacao"));
 		Page<MedicacaoVO> medicacaoVO = service.buscarTodos(pageable);
+		medicacaoVO.stream()
+				.forEach(f -> f.add(linkTo(methodOn(MedicacaoController.class).findById(f.getKey())).withSelfRel()));
+		return ResponseEntity.ok(CollectionModel.of(medicacaoVO));
+	}
+
+	@GetMapping(value = "/busca", produces = { "application/json", "application/xml" })
+	@ResponseStatus(value = HttpStatus.OK)
+	public ResponseEntity<CollectionModel<MedicacaoVO>> findAllByIdAnimal(
+			@RequestParam(value = "idAnimal") Long idAnimal,
+			@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam(value = "limit", defaultValue = "10") int limit,
+			@RequestParam(value = "direction", defaultValue = "asc") String direction) {
+		var sortDirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
+		Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection, "dataMedicacao"));
+		Page<MedicacaoVO> medicacaoVO = service.buscarTodosPorIdAnimal(idAnimal, pageable);
 		medicacaoVO.stream()
 				.forEach(f -> f.add(linkTo(methodOn(MedicacaoController.class).findById(f.getKey())).withSelfRel()));
 		return ResponseEntity.ok(CollectionModel.of(medicacaoVO));
