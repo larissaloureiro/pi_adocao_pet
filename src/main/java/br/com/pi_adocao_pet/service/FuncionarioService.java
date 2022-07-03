@@ -19,10 +19,13 @@ public class FuncionarioService {
 
 	public FuncionarioVO inserir(FuncionarioVO funcionario) {
 		var entity = DozerConverter.parseObject(funcionario, Funcionario.class);
-		if (entity.validaCpf()){
-			var vo = DozerConverter.parseObject(repository.save(entity), FuncionarioVO.class);
-			return vo;
+
+		if (!entity.validaCpf()) {
+			throw new IllegalArgumentException("CPF Inválido");
 		}
+
+		var vo = DozerConverter.parseObject(repository.save(entity), FuncionarioVO.class);
+		return vo;
 	}
 
 	public Page<FuncionarioVO> buscarTodos(Pageable pageable) {
@@ -56,11 +59,13 @@ public class FuncionarioService {
 		entity.setCargo(funcionario.getCargo());
 		entity.setCarteiraTrabalho(funcionario.getCarteiraTrabalho());
 		entity.setDataAdmissao(funcionario.getDataAdmissao());
-		
-		if (entity.validaCpf()){
-			var vo = DozerConverter.parseObject(repository.save(entity), FuncionarioVO.class);
-			return vo;
+
+		if (!entity.validaCpf()) {
+			throw new IllegalArgumentException("CPF Inválido");
 		}
+
+		var vo = DozerConverter.parseObject(repository.save(entity), FuncionarioVO.class);
+		return vo;
 	}
 
 	private FuncionarioVO convertToFuncionarioVO(Funcionario entity) {
