@@ -57,9 +57,6 @@ public class MedicacaoService {
 	public MedicacaoVO atualizar(MedicacaoVO medicacao) {
 		var entity = repository.findById(medicacao.getKey())
 				.orElseThrow(() -> new ResourceNotFoundException("Não foi encontrado registro com esse Id."));
-		entity.setIdAnimal(medicacao.getIdAnimal());
-		entity.setIdMedicamento(medicacao.getIdMedicamento());
-		entity.setIdFuncionario(medicacao.getIdFuncionario());
 		entity.setDataMedicacao(medicacao.getDataMedicacao());
 		entity.setDosagem(medicacao.getDosagem());
 		var vo = convertToMedicacaoVO(repository.save(entity));

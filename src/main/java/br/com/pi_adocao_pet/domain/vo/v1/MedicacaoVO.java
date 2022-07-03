@@ -8,9 +8,6 @@ import org.springframework.hateoas.RepresentationModel;
 
 import com.github.dozermapper.core.Mapping;
 
-import br.com.pi_adocao_pet.domain.entity.Animal;
-import br.com.pi_adocao_pet.domain.entity.Funcionario;
-import br.com.pi_adocao_pet.domain.entity.Medicamento;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,9 +21,6 @@ public class MedicacaoVO extends RepresentationModel<MedicacaoVO> implements Ser
 	
 	@Mapping("id")
 	private Long key;
-	private Animal idAnimal;
-	private Medicamento idMedicamento;
-    private Funcionario idFuncionario;
     private Date dataMedicacao;
     private String dosagem;
 	
@@ -34,7 +28,7 @@ public class MedicacaoVO extends RepresentationModel<MedicacaoVO> implements Ser
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(key, idAnimal, idMedicamento, idFuncionario, dataMedicacao, dosagem);
+		result = prime * result + Objects.hash(key, dataMedicacao, dosagem);
 		return result;
 	}
 
@@ -47,10 +41,7 @@ public class MedicacaoVO extends RepresentationModel<MedicacaoVO> implements Ser
 		if (getClass() != obj.getClass())
 			return false;
 		MedicacaoVO other = (MedicacaoVO) obj;
-		return Objects.equals(key, other.key) 
-                && Objects.equals(idAnimal, other.idAnimal)
-				&& Objects.equals(idMedicamento, other.idMedicamento)
-                && Objects.equals(idFuncionario, other.idFuncionario)
+		return Objects.equals(key, other.key)
                 && Objects.equals(dataMedicacao, other.dataMedicacao)
                 && Objects.equals(dosagem, other.dosagem);
 	}
