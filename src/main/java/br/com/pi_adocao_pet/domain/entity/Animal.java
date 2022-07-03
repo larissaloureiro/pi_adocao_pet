@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
+@Entity 
 @Table(name = "tb_Animal")
 public class Animal implements Serializable {
 
