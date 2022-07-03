@@ -3,7 +3,7 @@ package br.com.pi_adocao_pet.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
+import org.springframework.stereotype.Service;
 
 import br.com.pi_adocao_pet.adapter.DozerConverter;
 import br.com.pi_adocao_pet.domain.entity.Vacinacao;
@@ -11,7 +11,7 @@ import br.com.pi_adocao_pet.domain.vo.v1.VacinacaoVO;
 import br.com.pi_adocao_pet.exception.ResourceNotFoundException;
 import br.com.pi_adocao_pet.repository.VacinacaoRepository;
 
-
+@Service
 public class VacinacaoService {
 
 	@Autowired
@@ -35,12 +35,12 @@ public class VacinacaoService {
 
 	}
 	
-	public Page<VacinacaoVO> mostrarVacinacaoPorIdAnimal(Long idAnimal, Pageable pageable){
+	/*public Page<VacinacaoVO> mostrarVacinacaoPorIdAnimal(Long idAnimal, Pageable pageable){
 		var page = repository.findByIdAnimal(idAnimal, pageable);
 		return page.map(this::convertToVacinacaoVO);
 
 	}
-	
+	*/
 	private VacinacaoVO convertToVacinacaoVO(Vacinacao entity) {
 		return DozerConverter.parseObject(entity, VacinacaoVO.class);
 	}

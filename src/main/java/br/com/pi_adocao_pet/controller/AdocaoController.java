@@ -27,9 +27,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.pi_adocao_pet.domain.vo.v1.AdocaoVO;
 import br.com.pi_adocao_pet.service.AdocaoService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Tag(name="Adocao Endpoint")
+
+// @Tag(name="Adocao Endpoint")
 @RestController
 @RequestMapping("/api/adocao/v1")
 public class AdocaoController {

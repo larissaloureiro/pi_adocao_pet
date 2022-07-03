@@ -3,12 +3,13 @@ package br.com.pi_adocao_pet.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import br.com.pi_adocao_pet.domain.entity.Especie;
 import br.com.pi_adocao_pet.exception.ResourceNotFoundException;
 import br.com.pi_adocao_pet.repository.EspecieRepository;
 
-
+@Service
 public class EspecieService {
 	
 	@Autowired

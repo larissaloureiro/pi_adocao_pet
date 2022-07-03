@@ -26,9 +26,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.pi_adocao_pet.domain.vo.v1.EnderecoVO;
 import br.com.pi_adocao_pet.service.EnderecoService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 
-@Tag(name="Endereco Endpoint")
+
+
 @RestController
 @RequestMapping("/api/endereco/v1")
 public class EnderecoController {
