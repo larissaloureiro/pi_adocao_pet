@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import br.com.pi_adocao_pet.adapter.DozerConverter;
 import br.com.pi_adocao_pet.domain.entity.Adocao;
 import br.com.pi_adocao_pet.domain.vo.v1.AdocaoVO;
+import br.com.pi_adocao_pet.domain.vo.v1.MedicacaoVO;
 import br.com.pi_adocao_pet.exception.ResourceNotFoundException;
 import br.com.pi_adocao_pet.repository.AdocaoRepository;
 
@@ -29,6 +30,11 @@ public class AdocaoService {
 
 	private AdocaoVO convertToAdocaoVO(Adocao entity) {
 		return DozerConverter.parseObject(entity, AdocaoVO.class);
+	}
+	
+	public Page<AdocaoVO> buscarTodosPorIdTutor(long idTutor, Pageable pageable){
+		var page = repository.findAllByIdTutor(idTutor, pageable);
+		return page.map(this::convertToAdocaoVO);
 	}
 
 	public AdocaoVO buscarPorId(Long id) {
