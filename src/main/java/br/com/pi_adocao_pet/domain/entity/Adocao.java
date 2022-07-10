@@ -34,11 +34,11 @@ public class Adocao implements Serializable {
 
 	@ManyToOne // confirmar esta cardinalidade
 	@JoinColumn(name = "id_tutor")
-	private Tutor idTutor;
+	private Tutor tutor;
 
 	@OneToOne
 	@JoinColumn(name = "id_Animal")
-	private Animal idAnimal;
+	private Animal animal;
 
 	@NotBlank
 	@Column(name = "status")

@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		return super.authenticationManagerBean();
 	}
 	
-	protected void configure( HttpSecurity http) throws Exception {
+	/*protected void configure( HttpSecurity http) throws Exception {
 		http
 			.httpBasic().disable()
 			.csrf().disable()
@@ -45,6 +45,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.and()
 			.apply(new JwtConfigurer(jwtProvider));
 	}
-	
+	*/
 }
 
