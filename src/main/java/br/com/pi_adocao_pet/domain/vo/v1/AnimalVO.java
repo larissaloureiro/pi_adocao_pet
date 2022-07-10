@@ -3,6 +3,7 @@ package br.com.pi_adocao_pet.domain.vo.v1;
 import java.io.Serializable;
 import java.util.Objects;
 
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.hateoas.RepresentationModel;
 
 import com.github.dozermapper.core.Mapping;
@@ -86,6 +87,11 @@ public class AnimalVO extends RepresentationModel<AnimalVO> implements Serializa
 		AnimalVO other = (AnimalVO) obj;
 		return idade == other.idade && key == other.key && Objects.equals(nome, other.nome)
 				&& Objects.equals(porte, other.porte) && Objects.equals(sexo, other.sexo);
+	}
+
+	public static Iterable<Order> stream() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

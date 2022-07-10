@@ -3,9 +3,6 @@ package br.com.pi_adocao_pet.controller;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-import java.util.Collection;
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +11,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
+import org.springframework.data.util.Streamable;
 import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.RepresentationModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,74 +29,62 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.pi_adocao_pet.domain.entity.Animal;
-import br.com.pi_adocao_pet.domain.vo.v1.AnimalVO;
-import br.com.pi_adocao_pet.domain.vo.v1.MedicacaoVO;
-import br.com.pi_adocao_pet.service.AnimalService;
+import br.com.pi_adocao_pet.domain.entity.Especie;
+import br.com.pi_adocao_pet.domain.entity.Raca;
+import br.com.pi_adocao_pet.domain.vo.v1.EspecieVO;
+import br.com.pi_adocao_pet.domain.vo.v1.RacaVO;
+import br.com.pi_adocao_pet.service.EspecieService;
 
 @RestController
-@RequestMapping ("/api/animal/v1/")
-public class AnimalController {
-	
+@RequestMapping
+
+public class EspecieController {
+
 	@Autowired
-	AnimalService service;
-	
+	EspecieService service;
+
 	@RequestMapping(method = RequestMethod.GET, produces = { "application/json", "application/xml" })
 	@ResponseStatus(value = HttpStatus.OK)
-	public ResponseEntity<CollectionModel<AnimalVO>> findAll(
+	public ResponseEntity<CollectionModel<Especie>> findAll(
 			@RequestParam(value = "page", defaultValue = "0") int page,
 			@RequestParam(value = "limit", defaultValue = "10") int limit,
 			@RequestParam(value = "direction", defaultValue = "asc") String direction) {
 		var sortDirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
 		Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection, "nome"));
-		Page<AnimalVO> animalVO = service.buscarPorId(pageable);
-		animalVO.stream()
-				.forEach(f -> f.add(linkTo(methodOn(AnimalController.class).findById(f.getKey())).withSelfRel()));
-		return ResponseEntity.ok(CollectionModel.of(animalVO));
-	}
-
-	@GetMapping(value = "/busca", produces = { "application/json", "application/xml" })
-	@ResponseStatus(value = HttpStatus.OK)
-	public ResponseEntity<CollectionModel<Animal>> findAllByIdAnimal(
-			@RequestParam(value = "idAnimal") Long idAnimal,
-			@RequestParam(value = "page", defaultValue = "0") int page,
-			@RequestParam(value = "limit", defaultValue = "10") int limit,
-			@RequestParam(value = "direction", defaultValue = "asc") String direction) {
-		var sortDirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
-		Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection, "nomeAnimal"));
-		Collection<Animal> animalVO = service.buscarTodos(idAnimal, pageable);
-		AnimalVO.stream()
-				.forEach(f -> f.add(linkTo(methodOn(AnimalController.class).findById((AnimalVO) f).getKey())).withSelfRel());
-		return ResponseEntity.ok(CollectionModel.of(animalVO));
+		Page<Especie> especieVO = service.buscarTodos(pageable);
+				especieVO.stream()
+				.forEach(v -> v.add(linkTo(methodOn(EspecieController.class).findById(v.getId())).withSelfRel()));
+		return ResponseEntity.ok(CollectionModel.of(especieVO));
 	}
 
 	@GetMapping(value = "/{id}", produces = { "application/json", "application/xml" })
 	@ResponseStatus(value = HttpStatus.OK)
-	public AnimalVO findById(@PathVariable("id") Long id) {
-		AnimalVO animalVO = service.buscarPorId(id);
-		animalVO.add(linkTo(methodOn(AnimalController.class).findById(id)).withSelfRel());
-		return animalVO;
+	public RepresentationModel<EspecieVO> findById(@PathVariable("id") Long id) {
+		EspecieVO especieVO = service.buscarPorId(id);
+		RepresentationModel<EspecieVO> especieVO;
+		especieVO.add(linkTo(methodOn(EspecieController.class).findById(id)).withSelfRel());
+		return especieVO;
 	}
 
 	@PostMapping(consumes = { "application/json", "application/xml" }, produces = { "application/json",
 			"application/xml" })
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public AnimalVO create(@Valid @RequestBody AnimalVO animal) {
-		AnimalVO animalVO = service.inserir(animal);
-		animalVO.add(linkTo(methodOn(AnimalController.class).findById(animalVO.getKey())).withSelfRel());
-		return animalVO;
+	public EspecieVO create(@Valid @RequestBody EspecieVO especie) {
+		EspecieVO especieVO = service.inserir(especie);
+		especieVO.add(linkTo(methodOn(EspecieController.class).findById(especieVO.getId())).withSelfRel());
+		return especieVO;
 	}
 
 	@PutMapping(consumes = { "application/json", "application/xml" }, produces = { "application/json",
 			"application/xml" })
 	@ResponseStatus(value = HttpStatus.OK)
-	public AnimalVO update(@Valid @RequestBody AnimalVO animal) {
-		AnimalVO animalVO = service.atualizar(animal);
-		animalVO.add(linkTo(methodOn(AnimalController.class).findById(animalVO.getKey())).withSelfRel());
-		return animalVO;
+	public EspecieVO update(@Valid @RequestBody EspecieVO especie) {
+		EspecieVO especieVO = service.atualizar(especie);
+		especieVO.add(linkTo(methodOn(EspecieController.class).findById(especieVO.getId())).withSelfRel());
+		return especieVO;
 	}
 
-	@DeleteMapping(value = "/{id}", produces = { "application/json", "application/xml" })
+	@DeleteMapping(value = "/{id}")
 	@ResponseStatus(value = HttpStatus.OK)
 	public void delete(@PathVariable("id") Long id) {
 		service.delete(id);
@@ -104,5 +92,6 @@ public class AnimalController {
 
 }
 
-	
+
+
 

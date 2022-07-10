@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.springframework.hateoas.Link;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -76,5 +78,10 @@ public class Animal implements Serializable {
 	@Size(max = 45)
 	@Column(name = "informacoes_animal")
 	private String informacoes;
+
+	public void add(Link withSelfRel) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

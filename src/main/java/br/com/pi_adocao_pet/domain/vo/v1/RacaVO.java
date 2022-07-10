@@ -69,6 +69,11 @@ public class RacaVO extends RepresentationModel<RacaVO> implements Serializable 
 		RacaVO other = (RacaVO) obj;
 		return id == other.id && Objects.equals(idEspecie, other.idEspecie) && Objects.equals(nome, other.nome);
 	}
+
+	public Long getKey() {
+		
+		return null;
+	}
 	
 	
 	
