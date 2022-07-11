@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import br.com.pi_adocao_pet.adapter.DozerConverter;
 import br.com.pi_adocao_pet.domain.entity.Adocao;
 import br.com.pi_adocao_pet.domain.vo.v1.AdocaoVO;
-import br.com.pi_adocao_pet.domain.vo.v1.MedicacaoVO;
 import br.com.pi_adocao_pet.exception.ResourceNotFoundException;
 import br.com.pi_adocao_pet.repository.AdocaoRepository;
 

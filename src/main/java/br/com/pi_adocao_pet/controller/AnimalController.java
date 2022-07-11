@@ -3,9 +3,6 @@ package br.com.pi_adocao_pet.controller;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-import java.util.Collection;
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +26,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.pi_adocao_pet.domain.entity.Animal;
+import br.com.pi_adocao_pet.domain.vo.v1.AdocaoVO;
 import br.com.pi_adocao_pet.domain.vo.v1.AnimalVO;
-import br.com.pi_adocao_pet.domain.vo.v1.MedicacaoVO;
 import br.com.pi_adocao_pet.service.AnimalService;
 
 @RestController
@@ -41,35 +37,37 @@ public class AnimalController {
 	@Autowired
 	AnimalService service;
 	
+	/*
 	@RequestMapping(method = RequestMethod.GET, produces = { "application/json", "application/xml" })
 	@ResponseStatus(value = HttpStatus.OK)
-	public ResponseEntity<CollectionModel<AnimalVO>> findAll(
+	public ResponseEntity<CollectionModel<AdocaoVO>> findAll(
 			@RequestParam(value = "page", defaultValue = "0") int page,
 			@RequestParam(value = "limit", defaultValue = "10") int limit,
 			@RequestParam(value = "direction", defaultValue = "asc") String direction) {
 		var sortDirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
 		Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection, "nome"));
-		Page<AnimalVO> animalVO = service.buscarPorId(pageable);
+		Page<AnimalVO> animalVO = service.buscarTodos(pageable);
 		animalVO.stream()
 				.forEach(f -> f.add(linkTo(methodOn(AnimalController.class).findById(f.getKey())).withSelfRel()));
 		return ResponseEntity.ok(CollectionModel.of(animalVO));
-	}
-
+	} */
+	
 	@GetMapping(value = "/busca", produces = { "application/json", "application/xml" })
 	@ResponseStatus(value = HttpStatus.OK)
-	public ResponseEntity<CollectionModel<Animal>> findAllByIdAnimal(
-			@RequestParam(value = "idAnimal") Long idAnimal,
+	public ResponseEntity<CollectionModel<AnimalVO>> findAllByIdEspecie(
+			@RequestParam(value = "idEspecie") Long idEspecie,
 			@RequestParam(value = "page", defaultValue = "0") int page,
 			@RequestParam(value = "limit", defaultValue = "10") int limit,
 			@RequestParam(value = "direction", defaultValue = "asc") String direction) {
 		var sortDirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
-		Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection, "nomeAnimal"));
-		Collection<Animal> animalVO = service.buscarTodos(idAnimal, pageable);
-		AnimalVO.stream()
-				.forEach(f -> f.add(linkTo(methodOn(AnimalController.class).findById((AnimalVO) f).getKey())).withSelfRel());
+		Pageable pageable = PageRequest.of(page, limit, Sort.by(sortDirection, "id"));
+		Page<AnimalVO> animalVO = service.buscarTodosPorIdEspecie(idEspecie, pageable);
+		animalVO.stream()
+				.forEach(f -> f.add(linkTo(methodOn(AnimalController.class).findById(f.getKey())).withSelfRel()));
 		return ResponseEntity.ok(CollectionModel.of(animalVO));
 	}
-
+	
+	
 	@GetMapping(value = "/{id}", produces = { "application/json", "application/xml" })
 	@ResponseStatus(value = HttpStatus.OK)
 	public AnimalVO findById(@PathVariable("id") Long id) {
@@ -92,7 +90,7 @@ public class AnimalController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public AnimalVO update(@Valid @RequestBody AnimalVO animal) {
 		AnimalVO animalVO = service.atualizar(animal);
-		animalVO.add(linkTo(methodOn(AnimalController.class).findById(animalVO.getKey())).withSelfRel());
+		animalVO.add(linkTo(methodOn(AdocaoController.class).findById(animalVO.getKey())).withSelfRel());
 		return animalVO;
 	}
 
