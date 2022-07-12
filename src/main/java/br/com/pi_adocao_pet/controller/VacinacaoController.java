@@ -69,8 +69,10 @@ public class VacinacaoController {
 		return vacinacaoVO;
 	}
 
-	/* @GetMapping(value = "/buscarPorIdAnimal/{id}", produces = { "application/json", "application/xml" })
-	public ResponseEntity<CollectionModel<VacinacaoVO>> findPersonByName(@PathVariable("idAnimal") Long idAnimal,
+	@GetMapping(value = "/buscarPorIdAnimal/{id}", produces = { "application/json", "application/xml" })
+	@ResponseStatus(value = HttpStatus.OK)
+	public ResponseEntity<CollectionModel<VacinacaoVO>> findAllByIdAnimal(
+			@RequestParam(value = "idAnimal") Long idAnimal,
 			@RequestParam(value = "page", defaultValue = "0") int page,
 			@RequestParam(value = "limit", defaultValue = "10") int limit,
 			@RequestParam(value = "direction", defaultValue = "asc") String direction) {
@@ -81,7 +83,7 @@ public class VacinacaoController {
 		vacinacoesVO.stream()
 				.forEach(v -> v.add(linkTo(methodOn(VacinacaoController.class).findById(v.getKey())).withSelfRel()));
 		return ResponseEntity.ok(CollectionModel.of(vacinacoesVO));
-	} */
+	} 
 
 }
 

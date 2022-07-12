@@ -7,9 +7,6 @@ import org.springframework.hateoas.RepresentationModel;
 
 import com.github.dozermapper.core.Mapping;
 
-import lombok.Getter;
-import lombok.Setter;
-
 public class VacinaVO extends RepresentationModel<VacinaVO> implements Serializable {
 
 	private static final long serialVersionUID = 1L;

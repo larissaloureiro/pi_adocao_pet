@@ -35,12 +35,12 @@ public class VacinacaoService {
 
 	}
 	
-	/*public Page<VacinacaoVO> mostrarVacinacaoPorIdAnimal(Long idAnimal, Pageable pageable){
+	public Page<VacinacaoVO> mostrarVacinacaoPorIdAnimal(Long idAnimal, Pageable pageable){
 		var page = repository.findByIdAnimal(idAnimal, pageable);
 		return page.map(this::convertToVacinacaoVO);
 
 	}
-	*/
+	
 	private VacinacaoVO convertToVacinacaoVO(Vacinacao entity) {
 		return DozerConverter.parseObject(entity, VacinacaoVO.class);
 	}
