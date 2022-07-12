@@ -11,8 +11,8 @@ import br.com.pi_adocao_pet.domain.entity.Vacinacao;
 
 @Repository
 public interface VacinacaoRepository extends JpaRepository<Vacinacao, Long> {
-	/*@Query("SELECT id_vacina " + "FROM vacina " + "JOIN vacinacao" + "  ON vacina.id_vacina = vacinacao.id_vacina "
-			+ "JOIN animal" + "  ON vacinacao.id_animal = animal.id_animal " + "WHERE id_animal = :id")
-	Page<Vacinacao> findByIdAnimal(@Param("id") Long idAnimal, Pageable pageable);*/
+	
+	@Query("Select v from Vacinacao v where v.idAnimal.id= :id")
+	Page<Vacinacao> findByIdAnimal(@Param("id") Long idAnimal, Pageable pageable);
 
 }
