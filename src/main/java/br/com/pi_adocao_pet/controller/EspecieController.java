@@ -11,10 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.data.domain.Sort.Order;
-import org.springframework.data.util.Streamable;
 import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.RepresentationModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,9 +27,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.pi_adocao_pet.domain.entity.Especie;
-import br.com.pi_adocao_pet.domain.entity.Raca;
 import br.com.pi_adocao_pet.domain.vo.v1.EspecieVO;
-import br.com.pi_adocao_pet.domain.vo.v1.RacaVO;
 import br.com.pi_adocao_pet.service.EspecieService;
 
 @RestController
@@ -59,9 +54,8 @@ public class EspecieController {
 
 	@GetMapping(value = "/{id}", produces = { "application/json", "application/xml" })
 	@ResponseStatus(value = HttpStatus.OK)
-	public RepresentationModel<EspecieVO> findById(@PathVariable("id") Long id) {
+	public EspecieVO findById(@PathVariable("id") Long id) {
 		EspecieVO especieVO = service.buscarPorId(id);
-		RepresentationModel<EspecieVO> especieVO;
 		especieVO.add(linkTo(methodOn(EspecieController.class).findById(id)).withSelfRel());
 		return especieVO;
 	}
